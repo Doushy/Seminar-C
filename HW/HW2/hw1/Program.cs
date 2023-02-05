@@ -14,7 +14,7 @@ if (rem == 3)
 {
     a1 = num / 10 % 10;
     System.Console.WriteLine($"{num} -> {a1}");
-    }
+}
 else
 {
 System.Console.WriteLine($"Вы ввели {rem} значное число");
