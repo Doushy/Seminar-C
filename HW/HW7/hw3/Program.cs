@@ -50,19 +50,23 @@ double StringArraySum(int[,] inArray)
     for (int j = 0; j < n; j++)
     {
         sum = 0;
+
+
         for (int i = 0; i < m; i++)
         {
             sum += inArray[i, j];
-            average = sum / (inArray.GetLength(0));
+
             if ((i == (inArray.GetLength(0) - 1)) && (j == (inArray.GetLength(1) - 1)))
             {
-                System.Console.Write((double)Math.Floor(average * 10) / 10 + ".");          //Для округления, например 5.66 -> 5.6
+                //System.Console.Write((double)Math.Floor(average * 10) / 10 + ".");          //Для округления, например 5.66 -> 5.6
             }
             else if (i == (inArray.GetLength(0) - 1))
             {
-                System.Console.Write((double)Math.Floor(average * 10) / 10 + "; ");
+                //System.Console.Write((double)Math.Floor(average * 10) / 10 + "; ");
             }
         }
+        average = sum / (inArray.GetLength(0));
+        System.Console.Write((double)Math.Floor(average * 10) / 10 + "; ");
     }
     return average;
 }
