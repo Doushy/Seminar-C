@@ -3,10 +3,18 @@ int rows = int.Parse(Console.ReadLine());
 System.Console.Write("Введите кол. столбцов: ");
 int columns = int.Parse(Console.ReadLine());
 
-int[,] array = GetArray(rows, columns, 0, 10);
+int[,] array = GetArray(rows, columns, 1, 10);
 PrintArray(array);
 System.Console.WriteLine();
-PrintArray(ChangeRows(array));
+if (rows == columns)
+{
+    array = NewArray(array);
+    PrintArray(array);
+}
+else
+{
+    System.Console.WriteLine("Невозможно заменить строки на столбцы!");
+}
 
 
 int[,] GetArray(int m, int n, int minValue, int maxValue)
@@ -16,7 +24,7 @@ int[,] GetArray(int m, int n, int minValue, int maxValue)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = new Random().Next(0, 10);
+            result[i, j] = new Random().Next(minValue, maxValue);
         }
     }
     return result;
@@ -35,23 +43,14 @@ void PrintArray(int[,] inArray)
     }
 }
 
-int[,] ChangeRows(int[,] array)
+int[,] NewArray(int[,] array)
 {
-
-    int[,] NewArray = new int[array.GetLength(0), array.GetLength(1)];
-    for (int i = 0; i < array.GetLength(0) - 1; i++)
+    int[,] NewArray = new int[array.GetLength(1), array.GetLength(0)];
+    for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            if (i != 0)
-            {
-                NewArray[i, j] = array[i, j];
-            }
-            else
-            {
-                NewArray[i, j] = array[array.GetLength(0) - 1, j];
-                NewArray[array.GetLength(0) - 1, j] = array[i, j];
-            }
+            NewArray[j, i] = array[i, j];
         }
     }
     return NewArray;
